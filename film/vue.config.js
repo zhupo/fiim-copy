@@ -25,7 +25,7 @@ module.exports = {
     // 输出文件名会被推导为 `subpage.html`。
     // subpage: "src/subpage/main.js"
   },
-  lintOnSave: "default",
+  lintOnSave: false,
   runtimeCompiler: false, // 是否使用包含运行时编译器的 Vue 构建版本
   transpileDependencies: [], // 默认情况下 babel-loader 会忽略所有 node_modules 中的文件
   productionSourceMap: true, // 如果你不需要生产环境的 source map，可以将其设置为 false 以加速生产环境构建。
@@ -65,7 +65,7 @@ module.exports = {
     //开启本地代理
     proxy: {
       "/api": {
-        target: "http://photo.com",
+        target: "http://film-backend.com",
         // ws: true,
         changeOrigin: true //开启代理，在本地创建一个虚拟服务端
       }

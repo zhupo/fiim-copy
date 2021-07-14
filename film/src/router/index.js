@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import SearchAll from '../pages/Home/children/SearchAll'
 
 import Home from '../pages/Home/Home'
 
@@ -18,6 +19,10 @@ export default new Router({
       meta:{
         showTabBar:true,
       }
-    }
+    },
+    {
+      path:'/search_all',
+      component:SearchAll
+    },
   ]
 })

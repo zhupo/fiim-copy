@@ -4,8 +4,8 @@ import router from './router'
 import cookies from 'vue-cookies'
 //配置字体图标
 import "@/common/css/style.css";
-import "../static/css/reset.css"
-import "../static/css/adapter.css"
+// import "../static/css/reset.css"
+// import "../static/css/adapter.css"
 
 Vue.config.productionTip = false
 

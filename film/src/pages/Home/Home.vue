@@ -112,7 +112,6 @@
         async loadMovieList(){
           let json = await getMovieList();
           json.data.forEach((value,index)=>{
-            console.log(index);
             if (new Date()-new Date(value.public_date)>=0){
               this.hotMovieList.push(value);
             } else{

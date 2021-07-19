@@ -80,7 +80,7 @@
             //是否显示头部搜索背景颜色
             headerActive:false,
             //服务器地址
-            server:'http://photo.com',
+            server:'http://film-backend.com/',
             //热门电影列表
             hotMovieList:[],
             //未上映电影列表

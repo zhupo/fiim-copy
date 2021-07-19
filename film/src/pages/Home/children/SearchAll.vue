@@ -47,7 +47,7 @@
             movieInfo:[],
             cinemaInfo:[],
             //服务器地址
-            server:'http://photo.com',
+            server:'http://film-backend.com/',
             timer: ''
           }
         },
@@ -59,11 +59,11 @@
             if (newVal) {
               this.timer = setTimeout(async() => {
               let json = await matchMovieByName(newVal);
-              if (json.success_code===200){
+              if (json.statusCode===200){
                 this.movieInfo = json.data;
               }
               json = await matchCinemaByName(newVal);
-              if (json.success_code===200){
+              if (json.statusCode===200){
                 this.cinemaInfo = json.data;
               }
             }, 500);

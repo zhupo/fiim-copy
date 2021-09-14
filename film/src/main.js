@@ -19,6 +19,5 @@ new Vue({
 }).$mount('#app')
 
 router.afterEach((to,from,next) => {
-  console.log(to, from, next)
   window.scrollTo(0,0);
 })

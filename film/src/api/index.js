@@ -26,9 +26,9 @@ export const updateUserInfo = (userId,userName,avatar,password,sex,sign,birthday
 //获取电影列表
 export const getMovieList = ()=>ajax('/api/movies');
 //获取电影详情
-export const getMovieDetail = (movieId)=>ajax('/api/getMovieDetail',{movieId});
+export const getMovieDetail = (id)=>ajax(`/api/movies/view`, {id});
 //判断用户是否想看电影
-export const isWishMovie = (userId,movieId)=>ajax('/api/isWishMovie',{userId,movieId},'POST');
+export const isWishMovie = (userId,movieId)=>ajax('/api/movies/is-wish-movie',{userId,movieId});
 //想看电影
 export const wishMovie = (userId,movieId)=>ajax('/api/wishMovie',{userId,movieId},'POST');
 //取消想看电影

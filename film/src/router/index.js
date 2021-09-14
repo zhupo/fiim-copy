@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import SearchAll from '../pages/Home/children/SearchAll'
+import MovieDetail from '../components/MovieDetail/MovieDetail'
 
 import Home from '../pages/Home/Home'
 
@@ -13,7 +14,7 @@ export default new Router({
       redirect:'/home'
     },
     {
-      path: '/home',
+      path:'/home',
       name:'home',
       component: Home,
       meta:{
@@ -23,6 +24,16 @@ export default new Router({
     {
       path:'/search_all',
       component:SearchAll
+    },
+    // {
+    //   path:'/movie_detail/:movieId',
+    //   name:'movie_detail',
+    //   component:MovieDetail
+    // },
+    {
+      path:'/movie_detail',
+      name:'movie_detail',
+      component:MovieDetail
     },
   ]
 })

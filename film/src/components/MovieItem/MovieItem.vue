@@ -1,10 +1,13 @@
 <template>
   <div v-if="movieList.length">
     <div class="movie-item" v-for="(item,index) in movieList" :key="index">
-      <img :src="server+item.poster" alt="" @click="$router.push({path:'/movie_detail',query:{movie_id:item.movie_id}})">
+      <!-- <img :src="server+item.poster" alt="" @click="$router.push({name:'movie_detail',params:{movieId:item.movie_id}})"> -->
+      <img :src="server+item.poster" alt="" @click="$router.push({path:'movie_detail',query:{movieId:item.movie_id}})">
       <div class="info">
-        <div class="name" @click="$router.push({path:'/movie_detail',query:{movie_id:item.movie_id}})" v-html="ruleName(item.name)"></div>
+        <!-- <div class="name" @click="$router.push({name:'/movie_detail',query:{movie_id:item.movie_id}})" v-html="ruleName(item.name)"></div> -->
+        <div class="name" @click="$router.push({path:'/movie_detail',query:{movieId:item.movie_id}})" v-html="ruleName(item.name)"></div>
         <div v-if="new Date()-new Date(item.public_date)>=0">
+          
           <div class="descInfo" v-if="item.score">评分：<span class="number">{{parseInt(item.score).toFixed(1)}}</span></div>
           <div class="descInfo" v-else>暂无评分</div>
         </div>

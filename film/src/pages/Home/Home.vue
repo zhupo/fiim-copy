@@ -30,7 +30,7 @@
             </div>
             <div class="body">
               <div class="item" v-for="(item,index) in hotMovieList.slice(0, 6)" :key="index">
-                <img :src="server+item.poster" alt="" @click="$router.push({path:'/movie_detail',query:{movie_id:item.movie_id}})">
+                <img :src="server+item.poster" alt="" @click="$router.push({path:'/movie_detail',query:{movieId:item.movie_id}})">
                 <div style="position: relative">
                   <div class="describe">
                     <span class="name ellipsis">{{item.name}}</span>

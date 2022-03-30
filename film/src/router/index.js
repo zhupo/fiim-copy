@@ -4,6 +4,7 @@ import SearchAll from '../pages/Home/children/SearchAll'
 import MovieDetail from '../components/MovieDetail/MovieDetail'
 
 import Home from '../pages/Home/Home'
+import Movie from '../pages/Movie/Movie'
 
 Vue.use(Router);
 
@@ -18,7 +19,15 @@ export default new Router({
       name:'home',
       component: Home,
       meta:{
-        showTabBar:true,
+        showTabBar:true
+      }
+    },
+    {
+      path:'/movie',
+      name:'movie',
+      component: Movie,
+      meta:{
+        showTabBar:true
       }
     },
     {

@@ -22,15 +22,10 @@
         <div class="header">
           <div class="title">口碑</div>
           <div class="wish" v-if="isShowMovie">
-            <span v-if="jsonData.wish_num">{{jsonData.wish_num}}人想看</span>
+            <span v-if="jsonData.wish_num > 0">{{jsonData.wish_num}}人想看</span>
             <span v-else>暂无想看</span>
           </div>
         </div>
-        <el-rate
-                v-model="starValue"
-                allow-half
-                :disabled="true"
-              />
           <div class="mark" v-if="isShowMovie">
             <div class="left">
               <el-rate
@@ -109,11 +104,11 @@
       updateUserSupport
     } from '../../api/index'
     import Vue from 'vue'
-    import {Indicator} from 'mint-ui'
+    // import {Indicator} from 'mint-ui'
     import {Rate} from 'element-ui'
-    import moment from 'moment';
-import { formatDate } from '../../common/util/util';
     Vue.use(Rate)
+    import moment from 'moment';
+    import { formatDate } from '../../common/util/util';
     export default {
         name: "MovieDetail",
         data(){
@@ -122,7 +117,7 @@ import { formatDate } from '../../common/util/util';
             averageScore:0,
             commentNum:0,
             //服务器地址
-            server:'http://film-backend.com',
+            server:'http://yexiaomao.xyz:8081',
             jsonData:[],
             isShowMovie:false,
             notWishMovie:true,
@@ -131,7 +126,7 @@ import { formatDate } from '../../common/util/util';
           }
         },
         created(){
-          Indicator.open('Loading...');
+          // Indicator.open('Loading...');
           this.loadMovieDetail();
         },
         methods:{
@@ -140,13 +135,14 @@ import { formatDate } from '../../common/util/util';
             if(this.$route.query.movieId){
               let json = await getMovieDetail(this.$route.query.movieId);
               if (json.statusCode===200){
-                this.jsonData = json.data[0];
+                this.jsonData = json.data;
                 //判断电影是否上映
-                new Date()-new Date(this.jsonData.public_date)>=0?this.isShowMovie = true:this.isShowMovie = false;
+                this.isShowMovie = new Date() - new Date(this.jsonData.public_date) >= 0;
                 if (this.isShowMovie){
                   this.starValue = this.jsonData.score*0.5.toFixed(1);
                 }
-                // if(this.$cookies.get('user_id')){
+                
+                if(this.$cookies.get('user_id')){
                   //判断用户是否喜欢该电影
                   let jsons = await isWishMovie(23, this.$route.query.movieId);
                   if (jsons.success_code===200){
@@ -154,37 +150,36 @@ import { formatDate } from '../../common/util/util';
                   } else{
                     this.notWishMovie = true;
                   }
-                  //
-                // }
+                }
                 //获取所有用户通过审核的评论
-                // let commentJson = await getAllUserPassComment(this.$route.query.movieId);
-                // if (commentJson.success_code===200&&commentJson.data.length){
-                //   let currentIndex=-1,sum=0;
-                //   this.commentNum = commentJson.data.length;
-                //   commentJson.data.forEach((value,index)=>{
-                //     if (value.user_id==this.$cookies.get('user_id')){
-                //       currentIndex = index;
-                //     }
-                //     sum+=value.user_score;
-                //   });
-                //   this.averageScore = sum/(commentJson.data.length);
-                //   if (this.averageScore!==0&&this.averageScore!==10){
-                //     this.averageScore = this.averageScore.toFixed(1);
-                //   }
-                //   this.starValue = this.averageScore*0.5;
-                //   if (currentIndex===-1){
-                //     this.currentUserCommentDate = [];
-                //   } else{
-                //     this.currentUserCommentDate = commentJson.data.splice(currentIndex,1);
-                //   }
-                //   this.otherUserCommentDate = commentJson.data;
-                //   this.otherUserCommentDate.sort((a, b)=>{
-                //     return b.support_num-a.support_num
-                //   });
-                // }
+                let commentJson = await getAllUserPassComment(this.$route.query.movieId);
+                if (commentJson.success_code===200&&commentJson.data.length){
+                  let currentIndex=-1,sum=0;
+                  this.commentNum = commentJson.data.length;
+                  commentJson.data.forEach((value,index)=>{
+                    if (value.user_id==this.$cookies.get('user_id')){
+                      currentIndex = index;
+                    }
+                    sum+=value.user_score;
+                  });
+                  this.averageScore = sum/(commentJson.data.length);
+                  if (this.averageScore!==0&&this.averageScore!==10){
+                    this.averageScore = this.averageScore.toFixed(1);
+                  }
+                  this.starValue = this.averageScore*0.5;
+                  if (currentIndex===-1){
+                    this.currentUserCommentDate = [];
+                  } else{
+                    this.currentUserCommentDate = commentJson.data.splice(currentIndex,1);
+                  }
+                  this.otherUserCommentDate = commentJson.data;
+                  this.otherUserCommentDate.sort((a, b)=>{
+                    return b.support_num-a.support_num
+                  });
+                }
               }
             }
-            Indicator.close();
+            // Indicator.close();
           },
           //想看按钮处理
           async wishBtnHandle(){
@@ -280,7 +275,7 @@ import { formatDate } from '../../common/util/util';
               this.$router.push('/login');
             }
           },
-          // //判断用户是否点赞
+          //判断用户是否点赞
           userIsSupportComment(supportStrArr){
             if (supportStrArr&&JSON.parse(supportStrArr).indexOf(Number(this.$cookies.get('user_id')))>-1) {
               return true;

@@ -29,7 +29,7 @@
         data(){
           return{
             //服务器地址
-            server:'http://film-backend.com/',
+            server:'http://film-backend.com',
           }
         },
         props: {

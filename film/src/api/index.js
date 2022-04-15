@@ -4,11 +4,13 @@ import ajax from './ajax'
 //获取验证码
 export const getPhoneCode = (phone)=>ajax('/api/getPhoneCode',{phone});
 //手机登录
-export const phoneLogin = (phone,phoneCode)=>ajax('/api/phoneLogin',{phone,phoneCode},'POST');
+export const phoneLogin = (phone,phoneCode)=>ajax('/api/auths/login',{phone,phoneCode},'POST');
 //账号密码登录
-export const pwdLogin = (userName,password,captcha)=>ajax('/api/pwdLogin',{userName,password,captcha},'POST');
+export const pwdLogin = (username,password,captcha)=>ajax('/api/auths/login',{username,password,captcha},'POST');
+//获取登陆信息
+export const getLoginInfo = ()=>ajax('/api/auths/login-info');
 //获取用户信息
-export const getUserInfo = (userId)=>ajax('/api/getUserInfo',{userId});
+export const getUserInfo = (userId)=>ajax('/api/users/view',{userId});
 //更新用户头像
 export const updateUserAvatar = (userId,avatar)=>ajax('/api/updateUserAvatar',{userId,avatar},'POST');
 //更新用户名
@@ -44,7 +46,7 @@ export const getCommentById = (commentId)=>ajax('/api/getCommentById',{commentId
 //更新当前评论的用户点赞
 export const updateUserSupport = (commentId,supportNum,supportUser)=>ajax('/api/updateUserSupport',{commentId,supportNum,supportUser},'POST');
 //获取电影列表
-export const getCinemaList = ()=>ajax('/api/getCinemaList');
+export const getCinemaList = ()=>ajax('/api/cinemas');
 //获取当前影院详情
 export const getCurrentCinemaDetail = (cinemaId)=>ajax('/api/getCurrentCinemaDetail',{cinemaId});
 //获取当前影院的排片

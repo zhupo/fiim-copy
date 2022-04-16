@@ -20,6 +20,7 @@
             <div class="item" @click="viewMyOrder">我的订单 <span class="icon-more"></span></div>
             <div class="item" @click="viewMyMovie(1)">想看的电影 <span class="icon-more"></span></div>
             <div class="item" @click="viewMyMovie(0)">看过的电影 <span class="icon-more"></span></div>
+            <div class="item" @click="logout()">退出 <span class="icon-more"></span></div>
           </div>
       </div>
     </div>
@@ -28,6 +29,7 @@
 <script>
     import {getLoginInfo} from '../../api/index'
     import {getUserInfo} from '../../api/index'
+    import {logout} from '../../api/index'
     import {Indicator} from 'mint-ui'
     export default {
         name: "My",
@@ -94,6 +96,11 @@
             } else{
               this.$router.push('login');
             }
+          },
+          async logout() {
+            let json = await logout();
+            this.isLogin = false;
+            this.jsonData = {};
           }
         },
     }

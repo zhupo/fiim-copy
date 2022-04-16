@@ -6,7 +6,9 @@ export const getPhoneCode = (phone)=>ajax('/api/getPhoneCode',{phone});
 //手机登录
 export const phoneLogin = (phone,phoneCode)=>ajax('/api/auths/login',{phone,phoneCode},'POST');
 //账号密码登录
-export const pwdLogin = (username,password,captcha)=>ajax('/api/auths/login',{username,password,captcha},'POST');
+export const pwdLogin = (username,password)=>ajax('/api/auths/login',{username,password},'POST');
+//退出登陆
+export const logout = ()=>ajax('/api/auths/logout',{},'POST');
 //获取登陆信息
 export const getLoginInfo = ()=>ajax('/api/auths/login-info');
 //获取用户信息

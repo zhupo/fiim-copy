@@ -63,7 +63,7 @@
                     </span>
                   </div>
                 </section>
-                <section class="login-info">
+                <!-- <section class="login-info">
                   <input type="text" placeholder="验证码" v-model="captcha">
                   <img
                     class="captcha"
@@ -71,7 +71,7 @@
                     alt="captcha"
                     @click="refreshCaptcha"
                   >
-                </section>
+                </section> -->
               </div>
               <button
                 class="login-submit"
@@ -100,8 +100,8 @@
             captcha:'',//图形验证码
             loginType:true,//登录方式
             countDown:0, //倒计时
-            isShowPassword:false,//密码显示方式
-            captchaSrc:'http://localhost:3000/api/captcha',
+            isShowPassword:false//密码显示方式
+            // captchaSrc:'http://localhost:3000/api/captcha',
           }
         },
         methods:{
@@ -134,9 +134,9 @@
             }
           },
           //刷新图形验证码
-          refreshCaptcha(){
-            this.captchaSrc = 'http://localhost:3000/api/captcha?time='+new Date();
-          },
+          // refreshCaptcha(){
+          //   this.captchaSrc = 'http://localhost:3000/api/captcha?time='+new Date();
+          // },
           //登录
           async login(){
             //判断登录模式
@@ -167,10 +167,8 @@
                 MessageBox.alert('请输入用户名')
               } else if(this.password===''){
                 MessageBox.alert('请输入密码')
-              } else if (this.captcha===''){
-                MessageBox.alert('请输入验证码')
               } else{
-                let json = await pwdLogin(this.userName,this.password,this.captcha);
+                let json = await pwdLogin(this.userName,this.password);
                 if (json.success_code===200){
                   Toast({
                     message: '登录成功',
@@ -180,7 +178,7 @@
                   this.$router.go(-1);
                 } else{
                   MessageBox.alert(json.message);
-                  this.refreshCaptcha();
+                  // this.refreshCaptcha();
                 }
               }
             }

@@ -42,7 +42,7 @@
           }
         },
         created(){
-          // this.loadLoginInfo();
+          //加载登陆信息
           this.loadUserInfo();
         },
         methods:{
@@ -57,9 +57,8 @@
           //加载用户信息
           async loadUserInfo(){
             //加载登陆信息
-            let loginInfo = await getLoginInfo();
-            this.isLogin = loginInfo.isLogin;
-            this.userId = loginInfo.userId;
+            this.isLogin = this.$bus.isLogin;
+            this.userId = this.$bus.userId;
             if (this.isLogin) {
               Indicator.open('Loading...');
               let json = await getUserInfo(this.userId);

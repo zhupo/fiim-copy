@@ -34,7 +34,7 @@
                 <div style="position: relative">
                   <div class="describe">
                     <span class="name ellipsis">{{item.name}}</span>
-                    <span class="score" v-if="item.score"><i class="interger">{{item.score.toFixed(1).split('.')[0]}}</i>.<i class="fraction">{{item.score.toFixed(1).split('.')[1]}}</i></span>
+                    <span class="score" v-if="item.score"><i class="interger">{{Number(item.score).toFixed(1).split('.')[0]}}</i>.<i class="fraction">{{Number(item.score).toFixed(1).split('.')[1]}}</i></span>
                   </div>
                 </div>
                 <div class="buy" @click="$router.push({path:'/select_cinema',query:{movie_id:item.movie_id}})">购票</div>

@@ -1,21 +1,13 @@
-let obj = {
-  isLogin: false,
-  userId: 0
-};
+let obj = {};
 
-//存储登陆信息
-obj.login = function(loginInfo) {
-  obj.isLogin = loginInfo.isLogin;
-  obj.userId = loginInfo.userId;
+//设置登陆信息
+obj.setLoginUserId = function(loginInfo) {
+  window.localStorage.setItem("userId", loginInfo.userId);
 };
 
 //获取登陆信息
-obj.getLoginInfo = function() {
-  let loginInfo = {};
-  loginInfo.isLogin = obj.isLogin;
-  loginInfo.userId = obj.userId;
-
-  return loginInfo;
+obj.getLoginUserId = function() {
+  return JSON.parse(window.localStorage.getItem("userId") || 0);
 };
 
 export default obj;

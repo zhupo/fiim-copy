@@ -31,14 +31,15 @@
     import {getUserInfo} from '../../api/index'
     import {logout} from '../../api/index'
     import {Indicator} from 'mint-ui'
+    import BusData from '@/BusData'
+
+    let avatarImg = 'http://yexiaomao.xyz:8081/images/avatar/userIcon.png';
     export default {
         name: "My",
         data(){
           return{
-            userId: 0,
-            isLogin: false,
             jsonData:{},
-            avatar:'http://yexiaomao.xyz:8081/images/avatar/userIcon.png'
+            avatar: avatarImg 
           }
         },
         created(){
@@ -51,17 +52,16 @@
             if (this.jsonData){
               this.avatar = 'http://yexiaomao.xyz:8081'+this.jsonData.avatar
             } else {
-              this.avatar = 'http://yexiaomao.xyz:8081/images/avatar/userIcon.png'
+              this.avatar = avatarImg
             }
           },
           //加载用户信息
           async loadUserInfo(){
             //加载登陆信息
-            this.isLogin = this.$bus.isLogin;
-            this.userId = this.$bus.userId;
-            if (this.isLogin) {
+            let userId = BusData.getLoginUserId();
+            if (userId) {
               Indicator.open('Loading...');
-              let json = await getUserInfo(this.userId);
+              let json = await getUserInfo(userId);
               if (json.statusCode===200) {
                 this.jsonData = json.data;
                 this.userAvatar();
@@ -98,8 +98,9 @@
           },
           async logout() {
             let json = await logout();
-            this.isLogin = false;
+            BusData.setLoginUserId({userId: 0});
             this.jsonData = {};
+            this.avatar = avatarImg;
           }
         },
     }

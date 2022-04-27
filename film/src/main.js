@@ -5,6 +5,7 @@ import cookies from 'vue-cookies'
 //配置字体图标
 import "@/common/css/style.css";
 import Bus from './Bus'
+import BusData from './BusData'
 // import "../static/css/reset.css"
 // import "../static/css/adapter.css"
 
@@ -16,6 +17,7 @@ Vue.use(cookies)
 
 //Vue 使用Bus
 Vue.prototype.$bus = Bus;
+Vue.prototype.$busData = BusData;
 
 new Vue({
   //注册路由

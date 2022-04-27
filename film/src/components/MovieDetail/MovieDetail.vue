@@ -57,7 +57,7 @@
           <div class="comment-container" v-if="currentUserCommentDate.length">
             <span class="title">我的讨论</span>
             <div class="comment-item">
-              <!-- <div class="left"><img :src="server+currentUserCommentDate[0].avatar" alt=""></div> -->
+              <div class="left"><img :src="server+currentUserCommentDate[0].avatar" alt=""></div>
               <div class="right">
                 <div class="user-name">{{currentUserCommentDate[0].user_name}}</div>
                 <div class="scored">给这部作品打了{{currentUserCommentDate[0].user_score}}分</div>
@@ -123,9 +123,11 @@
             notWishMovie:true,
             currentUserCommentDate:[],
             otherUserCommentDate:[],
+            userId: 0
           }
         },
         created(){
+          this.userId = this.$busData.getLoginUserId();
           // Indicator.open('Loading...');
           this.loadMovieDetail();
         },
@@ -142,10 +144,10 @@
                   this.starValue = this.jsonData.score*0.5.toFixed(1);
                 }
                 
-                if(this.$cookies.get('user_id')){
+                if(this.userId){
                   //判断用户是否喜欢该电影
-                  let jsons = await isWishMovie(23, this.$route.query.movieId);
-                  if (jsons.success_code===200){
+                  let jsons = await isWishMovie(this.userId, this.$route.query.movieId);
+                  if (jsons.statusCode===200){
                     this.notWishMovie = false;
                   } else{
                     this.notWishMovie = true;
@@ -153,11 +155,11 @@
                 }
                 //获取所有用户通过审核的评论
                 let commentJson = await getAllUserPassComment(this.$route.query.movieId);
-                if (commentJson.success_code===200&&commentJson.data.length){
+                if (commentJson.successCode===200&&commentJson.data.length){
                   let currentIndex=-1,sum=0;
                   this.commentNum = commentJson.data.length;
                   commentJson.data.forEach((value,index)=>{
-                    if (value.user_id==this.$cookies.get('user_id')){
+                    if (value.user_id == this.userId){
                       currentIndex = index;
                     }
                     sum+=value.user_score;
@@ -183,17 +185,17 @@
           },
           //想看按钮处理
           async wishBtnHandle(){
-            if (this.$cookies.get('user_id')){
+            if (this.userId){
               //不想看
               if (this.notWishMovie){
-                let json = await wishMovie(this.$cookies.get('user_id'),this.$route.query.movieId);
-                if (json.success_code===200){
+                let json = await wishMovie(this.userId,this.$route.query.movieId);
+                if (json.statusCode===200){
                   this.notWishMovie = false;
                   this.loadMovieDetail();
                 }
               } else {
-                let json = await cancelWishMovie(this.$cookies.get('user_id'),this.$route.query.movieId);
-                if (json.success_code===200){
+                let json = await cancelWishMovie(this.userId,this.$route.query.movieId);
+                if (json.statusCode===200){
                   this.notWishMovie = true;
                   this.loadMovieDetail();
                 }

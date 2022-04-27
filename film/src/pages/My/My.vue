@@ -31,7 +31,6 @@
     import {getUserInfo} from '../../api/index'
     import {logout} from '../../api/index'
     import {Indicator} from 'mint-ui'
-    import BusData from '@/BusData'
 
     let avatarImg = 'http://yexiaomao.xyz:8081/images/avatar/userIcon.png';
     export default {
@@ -58,7 +57,7 @@
           //加载用户信息
           async loadUserInfo(){
             //加载登陆信息
-            let userId = BusData.getLoginUserId();
+            let userId = this.$busData.getLoginUserId();
             if (userId) {
               Indicator.open('Loading...');
               let json = await getUserInfo(userId);

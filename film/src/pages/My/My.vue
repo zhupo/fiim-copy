@@ -97,7 +97,7 @@
           },
           async logout() {
             let json = await logout();
-            BusData.setLoginUserId({userId: 0});
+            this.$busData.setLoginUserId({userId: 0});
             this.jsonData = {};
             this.avatar = avatarImg;
           }

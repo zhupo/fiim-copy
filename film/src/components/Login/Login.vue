@@ -89,7 +89,6 @@
 <script>
     import {getPhoneCode,phoneLogin,pwdLogin} from '../../api/index'
     import {Toast,MessageBox} from 'mint-ui'
-    import BusData from '@/BusData'
     export default {
         name: "Login",
         data(){
@@ -171,7 +170,7 @@
               } else{
                 let json = await pwdLogin(this.userName,this.password);
                 if (json.success_code===200){
-                  BusData.setLoginUserId(json);
+                  this.$busData.setLoginUserId(json);
                   Toast({
                     message: '登录成功',
                     position: 'middle',

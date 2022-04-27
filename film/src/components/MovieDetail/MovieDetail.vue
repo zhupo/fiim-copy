@@ -72,7 +72,7 @@
           <div class="comment-container comment-list-container" v-if="otherUserCommentDate.length">
             <span class="title">精选评论</span>
             <div class="comment-item" v-for="(item,index) in otherUserCommentDate" :key="index">
-              <!-- <div class="left"><img :src="server+item.avatar" alt=""></div> -->
+              <div class="left"><img :src="server+item.avatar" alt=""></div>
               <div class="right">
                 <div class="user-name">{{item.user_name}}</div>
                 <div class="scored">给这部作品打了{{item.user_score}}分</div>

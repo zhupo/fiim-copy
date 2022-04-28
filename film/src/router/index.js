@@ -1,13 +1,14 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import SearchAll from '../pages/Home/children/SearchAll'
+import Login from '../components/Login/Login'
 import MovieDetail from '../components/MovieDetail/MovieDetail'
+import CommetnPanel from '../components/MovieDetail/children/CommentPanel'
 
 import Home from '../pages/Home/Home'
 import Movie from '../pages/Movie/Movie'
 import Cinema from '../pages/Cinema/Cinema'
 import My from '../pages/My/My'
-import Login from '../components/Login/Login'
+import SearchAll from '../pages/Home/children/SearchAll'
 
 Vue.use(Router);
 
@@ -50,6 +51,10 @@ export default new Router({
       }
     },
     {
+      path:'/login',
+      component:Login
+    },
+    {
       path:'/search_all',
       component:SearchAll
     },
@@ -64,8 +69,9 @@ export default new Router({
       component:MovieDetail
     },
     {
-      path:'/login',
-      component:Login
+      path:'/comment_panel',
+      name: 'comment_panel',
+      component:CommetnPanel
     },
   ]
 })

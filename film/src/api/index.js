@@ -38,7 +38,7 @@ export const wishMovie = (userId,movieId)=>ajax('/api/movies/add-wish-movie',{us
 //取消想看电影
 export const cancelWishMovie = (userId,movieId)=>ajax('/api/movies/cancel-wish-movie',{userId,movieId},'POST');
 //获取当前用户评论
-export const getUserComment = (userId,movieId)=>ajax('/api/getUserComment',{userId,movieId});
+export const getUserComment = (userId,movieId)=>ajax('/api/comments/view',{userId,movieId});
 //更新当前用户评论
 export const updateUserComment = (userId,movieId,score,commentContent,commentDate)=>ajax('/api/updateUserComment',{userId,movieId,score,commentContent,commentDate},'POST');
 //获取所有用户通过审核的评论

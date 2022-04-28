@@ -207,7 +207,7 @@
           //看过按钮处理
           watchedBtnHandle(){
             //用户已登录
-            if (this.$cookies.get('user_id')){
+            if (this.$busData.getLoginUserId()){
               this.$router.push({path:'/comment_panel',query:{movieId:this.$route.query.movieId}});
             } else{
               this.$router.push('/login');

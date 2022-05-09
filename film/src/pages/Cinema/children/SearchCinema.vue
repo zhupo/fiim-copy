@@ -47,7 +47,7 @@
             if(newVal){
               this.timer = setTimeout(async() => {
               let json = await matchCinemaByName(newVal);
-              if (json.success_code===200){
+              if (json.statusCode===200){
                 this.cinemaInfo = json.data;
               }
             }, 500);

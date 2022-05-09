@@ -10,7 +10,8 @@
   "dependencies": {
     "axios": "^0.18.0",
     "core-js": "^3.6.5",
-    "element-ui": "^2.7.0",
+    "element-ui": "^2.15.8",
+    "ly-tab": "^2.1.2",
     "mint-ui": "^2.2.13",
     "moment": "^2.24.0",
     "stylus": "^0.54.5",

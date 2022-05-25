@@ -1,4 +1,6 @@
-let obj = {};
+let obj = {
+  backendUrl: 'http://yexiaomao.xyz:8081'
+};
 
 //设置登陆信息
 obj.setLoginUserId = function(loginInfo) {

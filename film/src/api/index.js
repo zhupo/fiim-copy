@@ -40,7 +40,7 @@ export const cancelWishMovie = (userId,movieId)=>ajax('/api/movies/cancel-wish-m
 //获取当前用户评论
 export const getUserComment = (userId,movieId)=>ajax('/api/comments/view',{userId,movieId});
 //更新当前用户评论
-export const updateUserComment = (userId,movieId,score,commentContent,commentDate)=>ajax('/api/updateUserComment',{userId,movieId,score,commentContent,commentDate},'POST');
+export const updateUserComment = (userId,movieId,score,commentContent,commentDate)=>ajax('/api/comments/update',{userId,movieId,score,commentContent,commentDate},'POST');
 //获取所有用户通过审核的评论
 export const getAllUserPassComment = (movieId)=>ajax('/api/comments',{movieId});
 //获取当前评论
@@ -50,9 +50,9 @@ export const updateUserSupport = (commentId,supportNum,supportUser)=>ajax('/api/
 //获取电影列表
 export const getCinemaList = ()=>ajax('/api/cinemas');
 //获取当前影院详情
-export const getCurrentCinemaDetail = (cinemaId)=>ajax('/api/getCurrentCinemaDetail',{cinemaId});
+export const getCurrentCinemaDetail = (id)=>ajax('/api/cinema/view',{id});
 //获取当前影院的排片
-export const getCurrentCinemaMovieSchedule = (cinemaId)=>ajax('/api/getCurrentCinemaMovieSchedule',{cinemaId});
+export const getCurrentCinemaMovieSchedule = (id)=>ajax('/api/cinema/get-current-cinema-movie-schedule',{id});
 //获取排片详情
 export const getScheduleById = (scheduleId)=>ajax('/api/getScheduleById',{scheduleId});
 //更新排片座位信息

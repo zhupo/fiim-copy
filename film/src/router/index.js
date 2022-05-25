@@ -4,6 +4,7 @@ import Login from '../components/Login/Login'
 import MovieDetail from '../components/MovieDetail/MovieDetail'
 import CommetnPanel from '../components/MovieDetail/children/CommentPanel'
 import SelectCinema from '../components/SelectCinema/SelectCinema'
+import CinemaDetail from '../components/CinemaDetail/CinemaDetail'
 
 import Home from '../pages/Home/Home'
 import Movie from '../pages/Movie/Movie'
@@ -82,6 +83,10 @@ export default new Router({
     {
       path:'/select_cinema',
       component:SelectCinema
+    },
+    {
+      path:'/cinema_detail',
+      component:CinemaDetail
     }
   ]
 })

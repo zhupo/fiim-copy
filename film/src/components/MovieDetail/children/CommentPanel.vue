@@ -57,8 +57,8 @@
           async commentBtnHandle(){
             if (this.textarea){
               let commentDate = moment().format('YYYY-MM-DD HH:mm:ss');
-              let json = await updateUserComment(this.$cookies.get('user_id'),this.$route.query.movie_id,this.score,this.textarea,commentDate);
-              if (json.success_code===200){
+              let json = await updateUserComment(this.$busData.getLoginUserId(),this.$route.query.movieId,this.score,this.textarea,commentDate);
+              if (json.successCode===200){
                 MessageBox.alert('评论成功，待管理员审核！').then(action => {
                   this.$router.go(-1);
                 });

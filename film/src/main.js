@@ -6,8 +6,9 @@ import cookies from 'vue-cookies'
 import "@/common/css/style.css";
 import Bus from './Bus'
 import BusData from './BusData'
-// import "../static/css/reset.css"
-// import "../static/css/adapter.css"
+import "../static/css/reset.css"
+import "../static/css/adapter.css"
+import 'element-ui/lib/theme-chalk/index.css';
 
 Vue.config.productionTip = false
 

@@ -20,6 +20,7 @@
             <div class="item" @click="viewMyOrder">我的订单 <span class="icon-more"></span></div>
             <div class="item" @click="viewMyMovie(1)">想看的电影 <span class="icon-more"></span></div>
             <div class="item" @click="viewMyMovie(0)">看过的电影 <span class="icon-more"></span></div>
+            <div class="item"><a href="https://beian.miit.gov.cn/">湘ICP备2022003638号-1</a> <span class="icon-more"></span></div>
             <div class="item" @click="logout()">退出 <span class="icon-more"></span></div>
           </div>
       </div>

@@ -8,16 +8,16 @@
         <div class="swiper-container">
           <div class="swiper-wrapper">
             <div class="swiper-slide">
-              <img src="./images/swiper/1.jpg" alt="" @click="$router.push({path:'/movie_detail',query:{movie_id:5}})">
+              <img src="./images/swiper/1.jpg" alt="" @click="$router.push({path:'/movie_detail',query:{movieId:5}})">
             </div>
             <div class="swiper-slide">
-              <img src="./images/swiper/2.jpg" alt="" @click="$router.push({path:'/movie_detail',query:{movie_id:3}})">
+              <img src="./images/swiper/2.jpg" alt="" @click="$router.push({path:'/movie_detail',query:{movieId:3}})">
             </div>
             <div class="swiper-slide">
-              <img src="./images/swiper/3.jpg" alt="" @click="$router.push({path:'/movie_detail',query:{movie_id:34}})">
+              <img src="./images/swiper/3.jpg" alt="" @click="$router.push({path:'/movie_detail',query:{movieId:34}})">
             </div>
             <div class="swiper-slide">
-              <img src="./images/swiper/4.jpg" alt="" @click="$router.push({path:'/movie_detail',query:{movie_id:4}})">
+              <img src="./images/swiper/4.jpg" alt="" @click="$router.push({path:'/movie_detail',query:{movieId:4}})">
             </div>
           </div>
           <!-- 如果需要分页器 -->
@@ -47,7 +47,7 @@
             </div>
             <div class="body">
               <div class="item" v-for="(item,index) in notShowMovieList.slice(0,6)" :key="index">
-                <img :src="server+item.poster" alt="" @click="$router.push({path:'/movie_detail',query:{movie_id:item.movie_id}})">
+                <img :src="server+item.poster" alt="" @click="$router.push({path:'/movie_detail',query:{movieId:item.movie_id}})">
                 <div style="position: relative">
                   <div class="peopleNumber">
                     <span class="number" v-if="item.wish_num" style="font-family: PingFangSC-Regular,Hiragino Sans GB,sans-serif;font-size: .3rem;font-weight: 600">{{item.wish_num}}</span><span v-if="item.wish_num">人想看</span>
